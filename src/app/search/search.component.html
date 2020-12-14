@@ -1,0 +1,45 @@
+<label id="search-radio-group-label">Pick your favorite season</label>
+<mat-radio-group
+    aria-labelledby="search-radio-group-label"
+    [(ngModel)]="searchType">
+    <mat-radio-button value="movie">
+        Movie
+    </mat-radio-button>
+    <mat-radio-button  value="show">
+        Show
+    </mat-radio-button>
+</mat-radio-group>
+<div *ngIf="searchType === 'movie'">
+    <form>
+        <mat-form-field>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="movieSearch"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let movie of filteredMovies | async" [value]="movie.name" (click)="expand('movie', movie)">
+              {{movie.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
+<div *ngIf="searchType === 'show'">
+    <form>
+        <mat-form-field>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="showSearch"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let show of filteredShows | async" [value]="show.name" (click)="expand('show', show)">
+              {{show.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>

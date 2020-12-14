@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div id="watchlist" class="common-content-area">
+
+    <h2>Movies</h2>
+    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div class="preview-box center-container" *ngFor="let movie of watchlist.movies" (click)="expand('movie', movie)">
+            <p>{{movie.name}}</p>
+            <p *ngIf="movie.pivot.watched">Watched</p>
+            <p *ngIf="!movie.pivot.watched">Yet to watch</p>
+        </div>
+    </div>
+
+    <h2>Shows</h2>
+    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div class="preview-box center-container" *ngFor="let show of watchlist.shows" (click)="expand('show', show)">
+            <p>{{show.name}}</p>
+            <p *ngIf="lodash.find(watchlist.shows_watched, { show_id: show.id, watched: 1, season_id: null, episode_id: null }); else notWatched">Watched</p>
+            <ng-template #notWatched>
+                <p>Yet to watch</p>
+            </ng-template>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

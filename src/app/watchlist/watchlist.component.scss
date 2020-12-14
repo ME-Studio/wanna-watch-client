@@ -1,0 +1,21 @@
+#watchlist {
+    background: rgb(58,36,59);
+    background: linear-gradient(90deg, rgba(58,36,59,1) 0%, rgba(254,193,65,1) 35%, rgba(58,36,48,1) 100%);
+    
+    
+    h2 {
+        text-align: left;
+    }
+} 
+
+.preview-box {
+    border: 2px solid #FFBF00; 
+    min-width: 150px; 
+    height: 200px;
+    cursor: pointer;
+    background-color: #3a243b;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    line-height: 35px;
+}

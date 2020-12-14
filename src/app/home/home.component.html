@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div id="home" class="common-content-area">
+
+    <h2>Movies</h2>
+    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div class="preview-box center-container" *ngFor="let movie of allMovies" (click)="expand('movie', movie)">
+            <div>{{movie.name}}</div>
+            <div (click)="addToWatchlist($event, 'movie', movie.id)" class="material-icons" 
+                style="cursor: pointer; margin-top: 20px;">
+                note_add
+            </div>
+        </div>
+    </div>
+
+    <h2>Shows</h2>
+    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div class="preview-box center-container" *ngFor="let show of allShows" (click)="expand('show', show)">
+            <div>{{show.name}}</div>
+            <div (click)="addToWatchlist($event, 'show', show.id)" class="material-icons" 
+                style="cursor: pointer; margin-top: 20px;">
+                note_add
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>
+
+
+
+<button (click)="onLogout()">logout</button>
+<button (click)="onSearch()">search</button>

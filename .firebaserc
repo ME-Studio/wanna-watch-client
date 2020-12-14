@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "wanna-watch-db561"
+  },
+  "targets": {
+    "wanna-watch-db561": {
+      "hosting": {
+        "wanna-watch-client": [
+          "wanna-watch-db561"
+        ]
+      }
+    }
+  }
+}

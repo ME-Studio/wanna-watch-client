@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div id="movie" class="common-content-area">
+    <div>
+        <img src="{{'data:image/jpg;base64,' + movieData.image}}" />
+    </div>
+    <div>
+        <h3>NAME</h3>
+        <p>{{movieData.name}}</p>
+    </div>
+    <div>
+        <h3>ABOUT</h3>
+        <p>{{movieData.about}}</p>
+    </div>
+    <div>
+        <h3>CAST</h3>
+        <p>{{movieData.cast}}</p>
+    </div>
+    <div>
+        <h3>DURATION</h3>
+        <p>{{movieData.duration}}</p>
+    </div>
+    <div>
+        <h3>GENRE</h3>
+        <p>{{movieData.genre}}</p>
+    </div>
+    <div>
+        <h3>RELEASED ON</h3>
+        <p>{{movieData.release_date}}</p>
+    </div>
+</div>
+<app-footer></app-footer>

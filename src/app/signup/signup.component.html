@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div id="signup" class="common-content-area" >
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="center-container">
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" autocomplete="off" placeholder="name@example.com" formControlName="email" required
+              minlength="7" maxlength="50">
+            </mat-form-field>
+            <mat-error *ngIf="signupForm.get('email').hasError('email')">Please enter valid email address</mat-error>
+            <mat-error *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('required')">Please enter
+                a email address</mat-error>
+            <mat-error *ngIf="signupForm.get('email').hasError('minlength')">Minimum length of email address is 7
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('email').hasError('maxlength')">Maximum length of email address is 50
+            </mat-error>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" autocomplete="off" formControlName="password" required minlength="8" maxlength="50">
+            </mat-form-field>
+            <mat-error *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('required')">Please
+                enter a password
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('password').hasError('minlength')">Password should be atleast 8 characters
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('password').hasError('maxlength')">Password should not be beyond 20 characters
+            </mat-error>
+        </p>
+        <button type="submit" [disabled]="!signupForm.valid" class="common-button" style="margin-top: 20px;" mat-flat-button color="accent">Signup</button>
+    </form>
+</div>
+<app-footer></app-footer>

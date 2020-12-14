@@ -1,0 +1,173 @@
+<!-- <img src="{{'data:image/jpg;base64,' + imagePath}}" /> -->
+
+<form [formGroup]="movieForm" (ngSubmit)="onMovieSubmit()">
+    <div>
+        <label>
+        Name:
+            <input type="text" autocomplete="off" formControlName="name">
+        </label>
+    </div>
+    <div>
+        <label>
+        About:
+            <input type="text" autocomplete="off" formControlName="about">
+        </label>
+    </div>
+    <div>
+        <label>
+        Duration:
+        <input type="text" autocomplete="off" formControlName="duration">
+        </label>
+    </div>
+    <div>
+        <label>
+        Genre:
+        <input type="text" autocomplete="off" formControlName="genre">
+        </label>
+    </div>
+    <div>
+        <label>
+        Cast:
+        <input type="text" autocomplete="off" formControlName="cast">
+        </label>
+    </div>
+    <div>
+        <label>
+        Release Date:
+        <input type="text" autocomplete="off" formControlName="release_date">
+        </label>
+    </div>
+    <div>
+        <label>
+        Image:
+        <input type="file" formControlName="image" (change)="getImage($event, 'movie')">
+        </label>
+    </div>
+    
+    <button type="submit" [disabled]="!movieForm.valid">Submit</button>
+  
+</form>
+
+<form [formGroup]="showForm" (ngSubmit)="onShowSubmit()">
+    <div>
+        <label>
+        Name:
+            <input type="text" autocomplete="off" formControlName="name">
+        </label>
+    </div>
+    <div>
+        <label>
+        About:
+            <input type="text" autocomplete="off" formControlName="about">
+        </label>
+    </div>
+    <div>
+        <label>
+        Genre:
+        <input type="text" autocomplete="off" formControlName="genre">
+        </label>
+    </div>
+    <div>
+        <label>
+        Cast:
+        <input type="text" autocomplete="off" formControlName="cast">
+        </label>
+    </div>
+    <div>
+        <label>
+        Release Date:
+        <input type="text" autocomplete="off" formControlName="release_date">
+        </label>
+    </div>
+    <div>
+        <label>
+        Image:
+        <input type="file" formControlName="image" (change)="getImage($event, 'show')">
+        </label>
+    </div>
+    
+    <button type="submit" [disabled]="!showForm.valid || lodash.isEmpty(seasons)">Submit</button>
+    <button type="button" [disabled]="!showForm.valid || displaySeasonForm" (click)="displaySeasonForm = !displaySeasonForm">add season</button>
+  
+</form>
+
+
+<form *ngIf="displaySeasonForm" [formGroup]="seasonForm" (ngSubmit)="onSeasonSubmit()">
+    <div>
+        <label>
+        Name:
+            <input type="text" autocomplete="off" formControlName="name">
+        </label>
+    </div>
+    <div>
+        <label>
+        About:
+            <input type="text" autocomplete="off" formControlName="about">
+        </label>
+    </div>
+    <div>
+        <label>
+        Cast:
+        <input type="text" autocomplete="off" formControlName="cast">
+        </label>
+    </div>
+    <div>
+        <label>
+        Release Date:
+        <input type="text" autocomplete="off" formControlName="release_date">
+        </label>
+    </div>
+    <div>
+        <label>
+        Image:
+        <input type="file" formControlName="image" (change)="getImage($event, 'season')">
+        </label>
+    </div>
+    
+    <button type="submit" [disabled]="!seasonForm.valid || lodash.isEmpty(episodes)">Submit</button>
+    <button type="button" [disabled]="!seasonForm.valid || displayEpisodeForm" (click)="displayEpisodeForm = !displayEpisodeForm">Add episode</button>
+  
+</form>
+
+<form *ngIf="displayEpisodeForm" [formGroup]="episodeForm" (ngSubmit)="onEpisodeSubmit()">
+    <div>
+        <label>
+        Name:
+            <input type="text" autocomplete="off" formControlName="name">
+        </label>
+    </div>
+    <div>
+        <label>
+        About:
+            <input type="text" autocomplete="off" formControlName="about">
+        </label>
+    </div>
+    <div>
+        <label>
+        Duration:
+        <input type="text" autocomplete="off" formControlName="duration">
+        </label>
+    </div>
+    <div>
+        <label>
+        Cast:
+        <input type="text" autocomplete="off" formControlName="cast">
+        </label>
+    </div>
+    <div>
+        <label>
+        Release Date:
+        <input type="text" autocomplete="off" formControlName="release_date">
+        </label>
+    </div>
+    <div>
+        <label>
+        Image:
+        <input type="file" formControlName="image" (change)="getImage($event, 'episode')">
+        </label>
+    </div>
+    
+    <button type="submit" [disabled]="!episodeForm.valid">Submit</button>
+  
+</form>
+

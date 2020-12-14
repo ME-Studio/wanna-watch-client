@@ -1,0 +1,87 @@
+<div>
+    <img src="{{'data:image/jpg;base64,' + showData.image}}" />
+</div>
+<div>
+    <h3>NAME</h3>
+    <p>{{showData.name}}</p>
+</div>
+<div>
+    <h3>ABOUT</h3>
+    <p>{{showData.about}}</p>
+</div>
+<div>
+    <h3>CAST</h3>
+    <p>{{showData.cast}}</p>
+</div>
+<div>
+    <h3>GENRE</h3>
+    <p>{{showData.genre}}</p>
+</div>
+<div>
+    <h3>RELEASED ON</h3>
+    <p>{{showData.release_date}}</p>
+</div>
+<div>
+    <h3>Add show to watchlist</h3>
+    <button (click)="addToWatchlist(showData.id)">add</button>
+</div>
+<div>
+    <h3>SEASONS</h3>
+    <div *ngFor="let season of showData.seasons" style="border: 1px solid red; padding: 20px;">
+        <div>
+            <img src="{{'data:image/jpg;base64,' + season.image}}" />
+        </div>
+        <div>
+            <h3>NAME</h3>
+            <p>{{season.name}}</p>
+        </div>
+        <div>
+            <h3>ABOUT</h3>
+            <p>{{season.about}}</p>
+        </div>
+        <div>
+            <h3>CAST</h3>
+            <p>{{season.cast}}</p>
+        </div>
+        <div>
+            <h3>RELEASED ON</h3>
+            <p>{{season.release_date}}</p>
+        </div>
+        <div>
+            <h3>Add season to watchlist</h3>
+            <button (click)="addToWatchlist(showData.id, season.id)">add</button>
+        </div>
+        <div>
+            <h3>EPISDOE</h3>
+            <div *ngFor="let episode of season.episodes" style="border: 1px solid green; padding: 20px;">
+                <div>
+                    <img src="{{'data:image/jpg;base64,' + episode.image}}" />
+                </div>
+                <div>
+                    <h3>NAME</h3>
+                    <p>{{episode.name}}</p>
+                </div>
+                <div>
+                    <h3>ABOUT</h3>
+                    <p>{{episode.about}}</p>
+                </div>
+                <div>
+                    <h3>CAST</h3>
+                    <p>{{episode.cast}}</p>
+                </div>
+                <div>
+                    <h3>DURATION</h3>
+                    <p>{{episode.duration}}</p>
+                </div>
+                <div>
+                    <h3>RELEASED ON</h3>
+                    <p>{{episode.release_date}}</p>
+                </div>
+                <div>
+                    <h3>Add episode to watchlist</h3>
+                    <button (click)="addToWatchlist(showData.id, season.id, episode.id)">add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

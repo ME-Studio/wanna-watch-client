@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div id="login" class="common-content-area" >
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="center-container">
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" autocomplete="off" placeholder="name@example.com" formControlName="email" required minlength="7" maxlength="50">
+            </mat-form-field>
+            <mat-error *ngIf="loginForm.get('email').hasError('email')">Please enter valid email address</mat-error>
+            <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">Please enter a email address</mat-error>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" autocomplete="off" formControlName="password" required minlength="8" maxlength="50">
+            </mat-form-field>
+            <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">Please enter a password</mat-error>
+        </p>
+    
+        <button type="submit" [disabled]="!loginForm.valid" class="common-button" style="margin-top: 20px;" mat-flat-button color="accent">Login</button>
+    </form>
+</div>
+<app-footer></app-footer>
