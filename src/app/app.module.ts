@@ -13,6 +13,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import {MatRadioModule} from '@angular/material/radio';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { LoginComponent } from './login/login.component';
@@ -59,7 +60,8 @@ import { FooterComponent } from './footer/footer.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatExpansionModule
   ],
   providers: [
     ApiService,

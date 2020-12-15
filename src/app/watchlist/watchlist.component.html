@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="watchlist" class="common-content-area">
-
+<!-- 
     <h2>Movies</h2>
     <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
         <div class="preview-box center-container" *ngFor="let movie of watchlist.movies" (click)="expand('movie', movie)">
@@ -8,10 +8,27 @@
             <p *ngIf="movie.pivot.watched">Watched</p>
             <p *ngIf="!movie.pivot.watched">Yet to watch</p>
         </div>
-    </div>
+    </div> -->
 
+    <div class="common-heading heading-box" >Movies</div>
+    <div style="width: 100%; margin-top: 30px;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
+        <div *ngFor="let movie of watchlist.movies">
+            <div *ngIf="!movie.pivot.watched" class="preview-box center-container" (click)="expand('movie', movie)">
+                <div>{{movie.name}}</div>
+                <!-- <div (click)="changeWatchedStatus($event, 'movie', movie.id)" style="margin-top: 20px;">
+                    <span *ngIf="movie.pivot.watched" class="material-icons add-to-watchlist-icon">
+                        verified
+                    </span>
+                    <span *ngIf="!movie.pivot.watched" class="material-icons add-to-watchlist-icon">
+                        task_alt
+                    </span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+<!-- 
     <h2>Shows</h2>
-    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutAlign="start" fxLayoutGap="20px">
+    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
         <div class="preview-box center-container" *ngFor="let show of watchlist.shows" (click)="expand('show', show)">
             <p>{{show.name}}</p>
             <p *ngIf="lodash.find(watchlist.shows_watched, { show_id: show.id, watched: 1, season_id: null, episode_id: null }); else notWatched">Watched</p>
@@ -19,7 +36,26 @@
                 <p>Yet to watch</p>
             </ng-template>
         </div>
+    </div> -->
 
+    <div class="common-heading heading-box" style="margin-top: 30px;">Shows</div>
+    <div style="width: 100%; margin-top: 30px;" fxLayout="row wrap" fxLayoutAlign="start"fxLayoutGap="20px">
+        <div *ngFor="let show of watchlist.shows">
+            <div *ngIf="!lodash.find(watchlist.shows_watched, { show_id: show.id, watched: 1, season_id: null, episode_id: null })" class="preview-box center-container" (click)="expand('show', show)">
+                <div>{{show.name}}</div>
+                <!-- <div (click)="addToWatchlist($event, 'show', show.id)" style="margin-top: 20px;">
+                    <span *ngIf="lodash.find(watchlist.shows_watched, { show_id: show.id, watched: 1, season_id: null, episode_id: null }); else notWatched" class="material-icons add-to-watchlist-icon">
+                        verified
+                    </span>
+                    <ng-template #notWatched>    
+                        <span class="material-icons add-to-watchlist-icon">
+                            task_alt
+                        </span>
+                    </ng-template>
+                </div> -->
+            </div>
+        </div>
     </div>
+
 </div>
 <app-footer></app-footer>

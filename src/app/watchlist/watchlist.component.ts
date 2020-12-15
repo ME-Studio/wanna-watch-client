@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class WatchlistComponent implements OnInit {
   lodash = _
-  watchlist: any
-  dataFetched: Boolean = false
+  watchlist: any = this.__dataStoreService.watchlist
   
   constructor(
     private __dataStoreService: DataStoreService,
@@ -21,15 +20,6 @@ export class WatchlistComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getwatchlist()
-  }
-
-  async getwatchlist(){
-    this.__dataStoreService.watchlist = await this.__apiService.watchlist()
-    this.watchlist  = this.__dataStoreService.watchlist
-    this.dataFetched = true
-
-    console.log('this.watchlist', this.watchlist)
   }
 
   expand(type: String, data: {id: Number}){

@@ -1,30 +1,100 @@
-<div>
-    <img src="{{'data:image/jpg;base64,' + showData.image}}" />
-</div>
-<div>
-    <h3>NAME</h3>
-    <p>{{showData.name}}</p>
-</div>
-<div>
-    <h3>ABOUT</h3>
-    <p>{{showData.about}}</p>
-</div>
-<div>
-    <h3>CAST</h3>
-    <p>{{showData.cast}}</p>
-</div>
-<div>
-    <h3>GENRE</h3>
-    <p>{{showData.genre}}</p>
-</div>
-<div>
-    <h3>RELEASED ON</h3>
-    <p>{{showData.release_date}}</p>
-</div>
-<div>
+<app-header></app-header>
+<div id="show" class="common-content-area">
+    <div style="text-align: center;" class="common-heading heading-box">{{lodash.startCase(showData.name)}}</div>
+
+    <div class="image-frame">
+        <img src="{{showData.image}}" width="250px" />
+    </div>
+
+
+<!-- <div>
     <h3>Add show to watchlist</h3>
     <button (click)="addToWatchlist(showData.id)">add</button>
+</div> -->
+
+
+    <div class="row">
+        <button (click)="addToWatchlist(showData)" [disabled]="inWatchlist" class="common-button" mat-flat-button color="accent">
+            {{ inWatchlist ? 'Already in watchlist' : 'Add to watchlist' }}
+        </button>
+        <button (click)="changeWatchedStatus(!showData.pivot.watched, showData.id)" style="margin-left: 50px;" mat-mini-fab color="accent">
+            <span *ngIf="showData.pivot.watched" class="material-icons">
+                verified
+            </span>
+            <span *ngIf="!showData.pivot.watched" class="material-icons">
+                task_alt
+            </span>
+        </button>
+    </div>
+    <div class="row">
+        <div class="row-heading">About</div>
+        <p class="row-content">{{showData.about}}</p>
+    </div>
+    <div class="row">
+        <div class="row-heading">Cast</div>
+        <p class="row-content">{{showData.cast}}</p>
+    </div>
+    <div class="row">
+        <div class="row-heading">Genre</div>
+        <p class="row-content">{{showData.genre}}</p>
+    </div>
+    <div class="row">
+        <div class="row-heading">Release Date</div>
+        <p class="row-content">{{showData.release_date}}</p>
+    </div>
+
+    <div class="row">
+        <div class="row-heading">
+            Seasons
+        </div>
+        <div class="row-content" style="width: 450px;">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let season of showData.seasons">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{lodash.startCase(season.name)}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{season.episodes.length}} Episode 
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div>
+                      <div *ngFor="let episode of season.episodes" fxLayout="row" fxLayoutAlign="center center">
+                        <div style="width: 30%; ">
+                            <div class="image-frame" style="padding: 10px 10px; ">
+                                <img src="{{episode.image}}" width="70px" />
+                            </div>
+                        </div>
+                        <div style="width: 50%;">
+                            {{lodash.startCase(episode.name)}}
+                        </div>
+                        <div style="width: 20%;">
+                            <button style="margin-left: 50px;" mat-mini-fab color="accent">
+                                <span (click)="changeWatchedStatus(false, showData.id, season.id, episode.id)" 
+                                    *ngIf="lodash.find(watchlist.shows_watched, { show_id: showData.id, season_id: season.id, episode_id: episode.id })" class="material-icons">
+                                    verified
+                                </span>
+                                <span (click)="changeWatchedStatus(true, showData.id, season.id, episode.id)" 
+                                    *ngIf="!lodash.find(watchlist.shows_watched, { show_id: showData.id, season_id: season.id, episode_id: episode.id })" class="material-icons">
+                                    task_alt
+                                </span>
+                            </button>
+                        </div>
+                      </div>
+                  </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+
 </div>
+
+<app-footer></app-footer>
+
+
+
+<!-- 
+
 <div>
     <h3>SEASONS</h3>
     <div *ngFor="let season of showData.seasons" style="border: 1px solid red; padding: 20px;">
@@ -84,4 +154,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

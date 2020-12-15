@@ -1,24 +1,34 @@
 <app-header></app-header>
 <div id="home" class="common-content-area">
 
-    <h2>Movies</h2>
-    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
+    <div class="common-heading heading-box" >Movies</div>
+    <div style="width: 100%; margin-top: 30px;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
         <div class="preview-box center-container" *ngFor="let movie of allMovies" (click)="expand('movie', movie)">
             <div>{{movie.name}}</div>
-            <div (click)="addToWatchlist($event, 'movie', movie.id)" class="material-icons" 
-                style="cursor: pointer; margin-top: 20px;">
-                note_add
+            <div style="margin-top: 20px;">
+                <span *ngIf="!lodash.find(watchlist.movies, movie); else notInWatchlist"
+                    (click)="addToWatchlist($event, 'movie', movie)"
+                    class="material-icons add-to-watchlist-icon">
+                    add_to_queue
+                </span>
             </div>
         </div>
     </div>
 
-    <h2>Shows</h2>
-    <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutAlign="start" fxLayoutGap="20px">
+    <!-- <div style="width: 100%; height: 2px; background-color:  #3a243b; margin: 30px 0;">
+
+    </div> -->
+
+    <div class="common-heading heading-box" style="margin-top: 30px;">Shows</div>
+    <div style="width: 100%; margin-top: 30px;" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px">
         <div class="preview-box center-container" *ngFor="let show of allShows" (click)="expand('show', show)">
             <div>{{show.name}}</div>
-            <div (click)="addToWatchlist($event, 'show', show.id)" class="material-icons" 
-                style="cursor: pointer; margin-top: 20px;">
-                note_add
+            <div style="margin-top: 20px;">
+                <span *ngIf="!lodash.find(watchlist.shows, show); else notInWatchlist"
+                    (click)="addToWatchlist($event, 'show', show)"
+                    class="material-icons add-to-watchlist-icon">
+                    add_to_queue
+                </span>
             </div>
         </div>
 
@@ -26,7 +36,8 @@
 </div>
 <app-footer></app-footer>
 
-
-
-<button (click)="onLogout()">logout</button>
-<button (click)="onSearch()">search</button>
+<ng-template #notInWatchlist>
+    <span class="material-icons add-to-watchlist-icon">
+        bookmark
+    </span>
+</ng-template>

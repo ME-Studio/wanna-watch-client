@@ -1,3 +1,21 @@
-<div id="header" fxLayout="row" fxLayoutAlign="center center">
-    <div style="font-size: 30px;">Wanna Watch</div>
+<div id="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div style="width: 25%; text-align: left;">
+        <div>
+            <button mat-mini-fab color="accent" (click)="onSearch()">
+                <span class="material-icons">
+                    search
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div style="font-size: 30px; width: 50%;">Wanna Watch</div>
+
+    <div style="width: 25%; text-align: right;">
+        <button (click)="onWatchlist()" class="common-button" 
+            style="border-color: #FFBF00; min-width: 0 !important; margin-right: 10px;"  mat-stroked-button color="accent">
+            Watchlist
+        </button>
+        <button (click)="onLogout()" class="common-button" style="border-color: #FFBF00; min-width: 0 !important;"  mat-stroked-button color="accent">Logout</button>
+    </div>
 </div>

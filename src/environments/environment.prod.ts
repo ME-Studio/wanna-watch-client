@@ -26,6 +26,12 @@ export const environment = {
     },
     get getShow() {
       return this.domain + this.api_version + 'show';
+    },
+    get changeMovie() {
+      return this.domain + this.api_version + 'movie';
+    },
+    get changeShow() {
+      return this.domain + this.api_version + 'show';
     }
   }
 };

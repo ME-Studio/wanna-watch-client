@@ -1,31 +1,43 @@
 <app-header></app-header>
 <div id="movie" class="common-content-area">
-    <div>
-        <img src="{{'data:image/jpg;base64,' + movieData.image}}" />
+
+    <div style="text-align: center;" class="common-heading heading-box">{{lodash.startCase(movieData.name)}}</div>
+
+    <div class="image-frame">
+        <img src="{{movieData.image}}" width="250px" />
     </div>
-    <div>
-        <h3>NAME</h3>
-        <p>{{movieData.name}}</p>
+    <div class="row">
+        <button (click)="addToWatchlist(movieData.id)" [disabled]="inWatchlist" class="common-button" mat-flat-button color="accent">
+            {{ inWatchlist ? 'Already in watchlist' : 'Add to watchlist' }}
+        </button>
+        <button (click)="changeWatchedStatus(movieData.id, !movieData.pivot.watched)" style="margin-left: 50px;" mat-mini-fab color="accent">
+            <span *ngIf="movieData.pivot.watched" class="material-icons">
+                verified
+            </span>
+            <span *ngIf="!movieData.pivot.watched" class="material-icons">
+                task_alt
+            </span>
+        </button>
     </div>
-    <div>
-        <h3>ABOUT</h3>
-        <p>{{movieData.about}}</p>
+    <div class="row">
+        <div class="row-heading">About</div>
+        <p class="row-content">{{movieData.about}}</p>
     </div>
-    <div>
-        <h3>CAST</h3>
-        <p>{{movieData.cast}}</p>
+    <div class="row">
+        <div class="row-heading">Cast</div>
+        <p class="row-content">{{movieData.cast}}</p>
     </div>
-    <div>
-        <h3>DURATION</h3>
-        <p>{{movieData.duration}}</p>
+    <div class="row">
+        <div class="row-heading">Duration</div>
+        <p class="row-content">{{movieData.duration}}</p>
     </div>
-    <div>
-        <h3>GENRE</h3>
-        <p>{{movieData.genre}}</p>
+    <div class="row">
+        <div class="row-heading">Genre</div>
+        <p class="row-content">{{movieData.genre}}</p>
     </div>
-    <div>
-        <h3>RELEASED ON</h3>
-        <p>{{movieData.release_date}}</p>
+    <div class="row">
+        <div class="row-heading">Release Date</div>
+        <p class="row-content">{{movieData.release_date}}</p>
     </div>
 </div>
 <app-footer></app-footer>

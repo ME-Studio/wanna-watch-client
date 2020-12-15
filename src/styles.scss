@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Montserrat', sans-serif; }
+body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
 
 
 .center-container {
@@ -21,8 +21,72 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
     display: flex;
     place-content: center;
     align-items: center;
+    padding: 30px;
+    background-color: whitesmoke;
 }
 
 .common-button {
     min-width: 150px !important;
 }
+
+.preview-box {
+    border: 2px solid #FFBF00;
+    min-width: 150px;
+    max-width: 150px;
+    height: 200px;
+    cursor: pointer;
+    color: #3a243b;
+    font-size: 20px;
+    text-align: center;
+    line-height: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    font-weight: 100;
+}
+
+.add-to-watchlist-icon {
+    cursor: pointer;
+    color: #FFBF00;
+    font-size: 35px;
+}
+
+.common-heading {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.heading-box {
+    width: 100%;
+    background-color: #FFBF00;
+    padding: 12px;
+    border-radius: 38px;
+}
+
+.row-content {
+    font-size: 15px;
+    font-weight: 500;
+    color: #3a243b;
+    margin-top: 20px !important;
+}
+
+.image-frame {
+    padding: 20px;
+        border: 2px solid #FFBF00;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        margin-top: 15px;
+}
+
+.row {
+    max-width: 500px;
+    text-align: justify;
+    text-align-last: center;
+    margin-top: 20px;
+}
+
+.row-heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: #FFBF00;
+}
+

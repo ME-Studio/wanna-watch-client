@@ -104,6 +104,28 @@ export class ApiService {
       .toPromise();
   }
 
+  async change(type: String, body: any) {
+
+    const url = environment.api_store[`change${_.upperFirst(type)}`]
+
+    const httpOptions = {
+      withCredentials: true
+    }
+
+    return this.http
+      .patch<any>(url, body, httpOptions)
+      .pipe(
+        catchError(this.handleError.bind(this))
+      )
+      .pipe(
+        map(response => {
+          console.log(response)
+          return response;
+        })
+      )
+      .toPromise();
+  }
+
   async watchlist(){
     const httpOptions = {
       withCredentials: true

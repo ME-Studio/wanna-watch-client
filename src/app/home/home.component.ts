@@ -13,11 +13,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  lodash = _
 
 
   dataFetched: boolean = false
   allMovies: {}[] = []
   allShows: {}[] = []
+  watchlist: any
 
   constructor(
     private __apiService: ApiService,
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMoviesAndShows()
+    this.getwatchlist()
   }
 
   async getMoviesAndShows(){
@@ -37,11 +40,31 @@ export class HomeComponent implements OnInit {
     this.dataFetched = true
   }
 
-  async addToWatchlist(event: Event, type: String, id: Number) {
+  async getwatchlist(){
+    this.watchlist = await this.__apiService.watchlist()
+    this.__dataStoreService.watchlist = this.watchlist
+    console.log('watchlist', this.__dataStoreService.watchlist)
+  }
+
+  async addToWatchlist(event: Event, type: String, data: any) {
     event.stopPropagation();
     let body = {  }
-    body[`${type}_id`] = id
+    body[`${type}_id`] = data.id
     body['watched'] = false
+
+    if(type === 'movie'){
+      const isWatched = _.find(this.watchlist.movies, data)
+      body['watched'] = isWatched && isWatched.pivot ? isWatched.pivot.watched : false
+      if(!isWatched){
+        this.__dataStoreService.watchlist.movies.push(data)
+      } 
+    }else if(type === 'show'){
+      const isWatched = _.find(this.watchlist.shows_watched, { show_id: data.id, season_id: null, episode_id: null })
+      body['watched'] = isWatched ? isWatched.watched : false
+      if(!isWatched){
+        this.__dataStoreService.watchlist.shows.push(data)
+      }
+    }
 
     const result = await this.__apiService.add(type, body)
 
@@ -49,17 +72,14 @@ export class HomeComponent implements OnInit {
   }
 
   expand(type: String, data: {id: Number}){
+
+    if(type === 'movie'){
+      const MovieWatchedData = _.find(this.__dataStoreService.watchlist.movies, data)
+      data = MovieWatchedData ? MovieWatchedData : data
+    }
+
     this.__dataStoreService[`highlighted${_.upperFirst(type)}`] = data
     this.router.navigate([type, data.id])
-  }
-
-  async onLogout(){
-    const result = await this.__apiService.logout()
-    console.log(result)
-  }
-
-  onSearch(){
-    this.router.navigate(['search'])
   }
 
 }
